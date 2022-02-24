@@ -4,7 +4,7 @@ import {View, FlatList} from 'react-native';
 import usePrograms from '../hooks/usePrograms';
 import Loader from '../components/Loader';
 import ErrorView from '../components/ErrorView';
-import ListCard, { HeaderComponent } from '../components/ListCard';
+import ListCard, {HeaderComponent} from '../components/ListCard';
 
 const Home = () => {
   const navigation = useNavigation();
@@ -18,6 +18,8 @@ const Home = () => {
   if (error) {
     return <ErrorView errorMessage={'OPPS!! SOMETHING WENT WRONG!'} />;
   }
+
+  console.log("programs", programs);
 
   return (
     <View style={{flex: 1}}>
@@ -36,8 +38,8 @@ const Home = () => {
             }
           />
         )}
-        ListHeaderComponent={() => <HeaderComponent title={'Programs Lists'} />} 
-        keyExtractor={item => item.key}
+        ListHeaderComponent={() => <HeaderComponent title={'Programs'} />}
+        keyExtractor={item => item.id}
       />
     </View>
   );
