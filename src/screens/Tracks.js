@@ -1,5 +1,5 @@
 import {useRoute} from '@react-navigation/native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, FlatList} from 'react-native';
 import TrackPlayerCard from '../components/TrackPlayerCard';
 import TrackPlayer, {
@@ -13,21 +13,33 @@ const Tracks = () => {
   const tracks = route?.params?.tracks;
   const [track, setTrack] = useState();
 
-  TrackPlayer.setupPlayer({});
-  TrackPlayer.updateOptions({
-    capabilities: [
-      Capability.Play,
-      Capability.Pause,
-      Capability.SkipToNext,
-      Capability.SkipToPrevious,
-      Capability.Stop,
-    ],
+  const trackSetup = async () => {
+    await TrackPlayer.setupPlayer({});
+    await TrackPlayer.updateOptions({
+      stopWithApp: true,
+      capabilities: [
+        Capability.Play,
+        Capability.Pause,
+        Capability.SkipToNext,
+        Capability.SkipToPrevious,
+        Capability.Stop,
+      ],
 
-    compactCapabilities: [Capability.Play, Capability.Pause],
-  });
+      compactCapabilities: [Capability.Play, Capability.Pause],
+    });
+  };
+
+  useEffect(() => {
+    trackSetup();
+    return () => {
+      // destroy the process after switching the screen
+      TrackPlayer.stop();
+    };
+  }, []);
 
   useTrackPlayerEvents(['playback-queue-ended'], () => {
     TrackPlayer.stop();
+    setTrack();
   });
 
   const onResume = async () => {
@@ -53,6 +65,7 @@ const Tracks = () => {
   };
 
   const onPressed = async item => {
+    console.log('this==>', await TrackPlayer.getState());
     const media = item?.media?.mp3?.url;
     const state = await TrackPlayer.getState();
     if (track && track.key === item.key) {
