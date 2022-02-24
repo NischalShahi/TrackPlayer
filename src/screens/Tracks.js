@@ -65,7 +65,6 @@ const Tracks = () => {
   };
 
   const onPressed = async item => {
-    console.log('this==>', await TrackPlayer.getState());
     const media = item?.media?.mp3?.url;
     const state = await TrackPlayer.getState();
     if (track && track.key === item.key) {
