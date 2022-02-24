@@ -3,7 +3,9 @@ import axios from 'axios';
 import {BASE_URL} from '../constants';
 
 const getPrograms = async () => {
-  const {data} = await axios.get(`${BASE_URL}/media-library/free`);
+  const {data} = await axios.get(
+    `${BASE_URL}/media-library/free?resetCache=false`,
+  );
   return data;
 };
 
