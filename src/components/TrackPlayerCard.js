@@ -2,13 +2,14 @@ import React from 'react';
 import {View, TouchableOpacity, Text, Image, StyleSheet} from 'react-native';
 import playIcon from '../assets/play.png';
 import pauseIcon from '../assets/pause.png';
+import { THEME } from '../constants';
 
 const styles = StyleSheet.create({
   container: {
     padding: 10,
     margin: 8,
     borderRadius: 5,
-    backgroundColor: '#989bb3',
+    backgroundColor: THEME.secondary,
     flexDirection: 'row',
     alignItems: 'center',
   },

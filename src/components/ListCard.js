@@ -1,6 +1,6 @@
 import React from 'react';
 import {TouchableOpacity, Text, StyleSheet, View, Image} from 'react-native';
-import { THEME } from '../constants';
+import {THEME} from '../constants';
 
 const styles = StyleSheet.create({
   buttonContainer: {
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     height: 180,
     alignItems: 'center',
     justifyContent: 'center',
-    elevation: 2
+    elevation: 2,
   },
   title: {
     color: THEME.primary,
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 25,
     fontWeight: 'bold',
-    color: '#5c6496',
+    color: THEME.primary,
   },
   imageStyle: {
     borderRadius: 5,
