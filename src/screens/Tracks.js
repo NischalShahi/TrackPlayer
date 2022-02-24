@@ -83,6 +83,7 @@ const Tracks = () => {
   return (
     <View>
       <FlatList
+        style={{marginTop: 10}}
         data={tracks}
         renderItem={item => (
           <TrackPlayerCard

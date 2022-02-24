@@ -4,11 +4,11 @@ import {View, FlatList} from 'react-native';
 import usePrograms from '../hooks/usePrograms';
 import Loader from '../components/Loader';
 import ErrorView from '../components/ErrorView';
-import ListCard from '../components/ListCard';
+import ListCard, { HeaderComponent } from '../components/ListCard';
 
 const Home = () => {
   const navigation = useNavigation();
-  const {data, error, isFetching} = usePrograms();
+  const {data, error, isFetching, refetch} = usePrograms();
   const programs = data?.programs;
 
   if (isFetching) {
@@ -23,6 +23,8 @@ const Home = () => {
     <View style={{flex: 1}}>
       <FlatList
         data={programs}
+        onRefresh={() => refetch()}
+        refreshing={isFetching}
         renderItem={item => (
           <ListCard
             item={item.item}
@@ -33,6 +35,7 @@ const Home = () => {
             }
           />
         )}
+        ListHeaderComponent={() => <HeaderComponent title={'Programs Lists'} />} 
         keyExtractor={item => item.id}
       />
     </View>

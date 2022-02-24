@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
   imageContainer: {width: 30, height: 30, marginRight: 10},
   titleStyle: {
     color: 'white',
+    fontSize: 16,
   },
 });
 
@@ -38,7 +39,9 @@ const TrackPlayerCard = ({item, onPress, track}) => {
           />
         )}
       </TouchableOpacity>
-      <Text style={styles.titleStyle}>{item.title}</Text>
+      <Text numberOfLines={1} style={styles.titleStyle}>
+        {item.title}
+      </Text>
     </View>
   );
 };
