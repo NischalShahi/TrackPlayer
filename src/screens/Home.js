@@ -19,8 +19,6 @@ const Home = () => {
     return <ErrorView errorMessage={'OPPS!! SOMETHING WENT WRONG!'} />;
   }
 
-  console.log("programs", programs);
-
   return (
     <View style={{flex: 1}}>
       <FlatList
