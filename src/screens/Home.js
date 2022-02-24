@@ -25,6 +25,7 @@ const Home = () => {
         data={programs}
         onRefresh={() => refetch()}
         refreshing={isFetching}
+        numColumns={2}
         renderItem={item => (
           <ListCard
             item={item.item}
@@ -36,7 +37,7 @@ const Home = () => {
           />
         )}
         ListHeaderComponent={() => <HeaderComponent title={'Programs Lists'} />} 
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.key}
       />
     </View>
   );
