@@ -4,30 +4,14 @@ import {View, FlatList} from 'react-native';
 import TrackPlayerCard from '../components/TrackPlayerCard';
 import TrackPlayer, {
   useTrackPlayerEvents,
-  Capability,
   State,
 } from 'react-native-track-player';
+import trackSetup from '../utils/trackSetup';
 
 const Tracks = () => {
   const route = useRoute();
   const tracks = route?.params?.tracks;
   const [track, setTrack] = useState();
-
-  const trackSetup = async () => {
-    await TrackPlayer.setupPlayer({});
-    await TrackPlayer.updateOptions({
-      stopWithApp: true,
-      capabilities: [
-        Capability.Play,
-        Capability.Pause,
-        Capability.SkipToNext,
-        Capability.SkipToPrevious,
-        Capability.Stop,
-      ],
-
-      compactCapabilities: [Capability.Play, Capability.Pause],
-    });
-  };
 
   useEffect(() => {
     trackSetup();
